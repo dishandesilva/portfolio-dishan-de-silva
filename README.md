@@ -30,7 +30,7 @@ The implementation focuses on maintainability, modular design, and scalable fron
 
 ## Preview
 
-![Preview](preview/index.png)
+![Preview](preview/splash.png)
 ![Preview](preview/home.png)
 
 ## Technology Stack
