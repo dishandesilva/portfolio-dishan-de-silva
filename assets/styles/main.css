@@ -1,0 +1,613 @@
+/**
+ * Main Styles
+ * Core styling for the portfolio website including global styles,
+ * header, navbar, footer, and base component styling
+ *
+ * Features:
+ * - CSS custom properties for consistent theming
+ * - Glassmorphic header with backdrop-filter
+ * - Responsive navigation and social icons
+ * - Theme toggle with smooth animations
+ * - Scroll reveal animations with IntersectionObserver
+ * - Custom cursor implementation
+ * - Premium button and form styling
+ *
+ * Architecture: Modular CSS with reusable classes and variables
+ */
+
+.nunito-main {
+  font-family: "Nunito", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400; /* default regular weight or 200–1000, depending on style */
+  font-style: normal;
+}
+
+.bebas-neue-regular {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.bruno-ace-regular {
+  font-family: "Bruno Ace", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+:root {
+  --deep-blue: #001f3f;
+  --dark-blue: #003366;
+  --sky-blue: #00aaff;
+  --light-blue: #66ccff;
+  --aqua: #13c8ff;
+  --cream: #f9f9f9;
+  --silver: #cfd8dc;
+  --text: #e6f8ff;
+  --text-muted: rgba(230, 248, 255, 0.8);
+  --bg-light: #f3fbff;
+  --bg-dark: #041127;
+  --bg-overlay: rgba(6, 15, 38, 0.72);
+  --sky-1: #9ed8ff;
+  --sky-2: #c7e6ff;
+  --sky-3: #e3f3ff;
+  --glow: 0 0 22px rgba(9, 153, 255, 0.45);
+  --font-main: "Nunito", sans-serif;
+  --radius: 16px;
+
+  --card-bg: rgba(255, 255, 255, 0.12);
+  --card-border: rgba(255, 255, 255, 0.2);
+  --card-shadow: 0 14px 35px rgba(0, 20, 45, 0.26);
+  --card-text: #e6f8ff;
+  --card-text-dark: #1a2440;
+  --card-accent: rgba(0, 170, 255, 0.28);
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: auto; /* not 100% if it limits scroll */
+  font-family: var(--font-main);
+  font-size: 1rem;
+  background: radial-gradient(circle at 25% 25%, #0a1d3a 0%, #00102b 42%, #040816 100%);
+  color: var(--text);
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body.dark-mode {
+  background:
+    radial-gradient(circle at 20% 18%, rgba(188, 233, 255, 0.74), transparent 30%),
+    radial-gradient(circle at 82% 16%, rgba(146, 224, 255, 0.5), transparent 26%),
+    linear-gradient(120deg, #67b6ea 0%, #8fd2f9 40%, #1f4f79 100%);
+  color: #ecf6ff;
+}
+
+
+/* HEADER — Realistic Glassmorphic Top Bar */
+.header-top {
+  width: 100%;
+  max-width: 1200px;
+  padding: 8px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(14px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12),
+    inset 0 1px 2px rgba(255, 255, 255, 0.3);
+  margin: 14px auto;
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
+  transition: all 0.3s ease;
+}
+
+.header-top .left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #ffffff 0%, #eaeaea 80%);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.8),
+    0 4px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.logo img {
+  width: 60%;
+  height: 60%;
+  object-fit: contain;
+}
+
+.logo:hover {
+  transform: scale(1.08);
+  /* box-shadow: 0 6px 18px rgba(0,0,0,0.2), inset 0 1px 2px rgba(255,255,255,0.9); */
+  box-shadow: inset 0.5px 0.5px 2px rgba(0, 0, 0, 0.2),
+    inset -0.5px -0.5px 2px rgba(255, 255, 255, 0.3),
+    0 6px 18px rgba(0, 0, 0, 0.2);
+}
+
+.brand-name {
+  font-family: "Bruno Ace", sans-serif;
+  color: #0b2540;
+  font-size: 1rem;
+  letter-spacing: 1px;
+}
+
+body.dark-mode .brand-name {
+  color: #ffffff;
+}
+
+/* RIGHT SIDE: Social + Theme Toggle aligned inline */
+.right {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+/* Social Icons */
+.socials {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.socials a {
+  text-decoration: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.25); /* soft glass */
+  backdrop-filter: blur(6px);
+
+  /* Soft embossed effect */
+  box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.2),
+    /* inner shadow reduced */ inset -1px -1px 3px rgba(255, 255, 255, 0.4),
+    /* highlight softened */ 0 4px 12px rgba(0, 0, 0, 0.15); /* outer shadow */
+  color: #0b2540;
+  border: 1.2px solid rgba(0, 0, 0, 0.7);
+}
+
+.socials a:hover {
+  border-color: #2ea3ff;
+  box-shadow: 0 0 10px rgba(46, 163, 255, 0.6);
+  transform: scale(1.15);
+  color: #2ea3ff;
+  background: rgba(255, 255, 255, 0.35);
+  box-shadow: inset 0.5px 0.5px 2px rgba(0, 0, 0, 0.2),
+    inset -0.5px -0.5px 2px rgba(255, 255, 255, 0.3),
+    0 6px 18px rgba(0, 0, 0, 0.2);
+}
+
+/* Theme Toggle */
+.theme-toggle {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.toggle-switch {
+  width: 60px;
+  height: 32px;
+  border-radius: 999px;
+  background: linear-gradient(145deg, #f1f1f1, #ffffff);
+  box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.1),
+    inset -1px -1px 3px rgba(255, 255, 255, 0.7), 0 3px 8px rgba(0, 0, 0, 0.15);
+  position: relative;
+  transition: all 0.4s ease;
+}
+
+.toggle-circle {
+  width: 28px;
+  height: 28px;
+  background: #ffffff;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.35s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+  color: #0b2540;
+  font-size: 14px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2),
+    inset 0 1px 2px rgba(255, 255, 255, 0.6);
+}
+
+/* DARK MODE */
+body.dark-mode {
+  background:
+    radial-gradient(circle at 18% 16%, rgba(188, 233, 255, 0.74), transparent 30%),
+    radial-gradient(circle at 84% 18%, rgba(146, 224, 255, 0.5), transparent 26%),
+    linear-gradient(120deg, #67b6ea 0%, #8fd2f9 40%, #1f4f79 100%);
+  color: #fff;
+}
+
+body.dark-mode .header-top {
+  background: rgba(30, 30, 30, 0.65);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+}
+
+body.dark-mode .socials a {
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #ddd;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+body.dark-mode .socials a:hover {
+  border-color: #2ea3ff;
+  color: #2ea3ff;
+  background: rgba(46, 163, 255, 0.1);
+}
+
+body.dark-mode .toggle-switch {
+  background: linear-gradient(145deg, #1a1a1a, #2c2c2c);
+  box-shadow: inset 2px 2px 4px rgba(255, 255, 255, 0.05),
+    inset -2px -2px 4px rgba(0, 0, 0, 0.4), 0 3px 10px rgba(0, 0, 0, 0.6);
+}
+
+body.dark-mode .toggle-circle {
+  left: 30px;
+  background: #1f1f1f;
+  color: #f5f5f5;
+  box-shadow: inset -1px -1px 3px rgba(255, 255, 255, 0.2),
+    inset 1px 1px 2px rgba(0, 0, 0, 0.4), 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 1024px) {
+  .header-top {
+    max-width: 850px;
+    padding: 7px 20px;
+    gap: 30px;
+  }
+  .brand-name {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-top {
+    max-width: 600px;
+    padding: 6px 16px;
+    gap: 15px;
+  }
+  .socials {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-top {
+    max-width: 300px;
+    padding: 5px 12px;
+    gap: 10px;
+  }
+}
+
+/* navbar Styles */
+
+.nav-right {
+  font-family: var(--font-main);
+  font-weight: 600;
+}
+
+/* footer Styles */
+
+.footer {
+  text-align: center;
+  padding: 10px 20px;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.15); /* semi-transparent white */
+  backdrop-filter: blur(12px) saturate(180%); /* glassy blur effect */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* subtle white border */
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  color: #0b2540; /* text color */
+  border-radius: 999px; /* pill shape */
+  font-weight: 700;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  margin: 25px 300px 15px 300px;
+}
+
+body.dark-mode .footer {
+  background: rgba(30, 30, 30, 0.65); /* semi-transparent dark */
+  border: 1px solid rgba(255, 255, 255, 0.1); /* subtle white border */
+  color: #ffffff; /* text color */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+}
+
+/* Global sections glass style (non-hero only) */
+section:not(.hero) {
+  position: relative;
+  margin: 18px auto;
+  padding: 64px 10%;
+  border-radius: 24px;
+  border: 0;
+  background: transparent;
+  backdrop-filter: none;
+  box-shadow: none;
+  transition: all 0.35s ease;
+  overflow: hidden;
+  transform: translate3d(0,0,0);
+}
+
+section:not(.hero) h2,
+section:not(.hero) h3 {
+  color: var(--card-text);
+}
+
+body.light-mode section:not(.hero) {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+body.light-mode section:not(.hero) h2,
+body.light-mode section:not(.hero) h3,
+body.light-mode section:not(.hero) p,
+body.light-mode section:not(.hero) li,
+body.light-mode section:not(.hero) .skill,
+body.light-mode section:not(.hero) .project-content,
+body.light-mode section:not(.hero) .testimonial-card,
+body.light-mode section:not(.hero) .contact input,
+body.light-mode section:not(.hero) .contact textarea {
+  color: #243556;
+}
+
+body.dark-mode section:not(.hero) {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+body.dark-mode section:not(.hero) h2,
+body.dark-mode section:not(.hero) h3,
+body.dark-mode section:not(.hero) p,
+body.dark-mode section:not(.hero) li,
+body.dark-mode section:not(.hero) .skill,
+body.dark-mode section:not(.hero) .project-content,
+body.dark-mode section:not(.hero) .testimonial-card,
+body.dark-mode section:not(.hero) .contact input,
+body.dark-mode section:not(.hero) .contact textarea {
+  color: #d8efff;
+}
+
+body.light-mode section:not(.hero) .skill,
+body.dark-mode section:not(.hero) .skill,
+body.light-mode section:not(.hero) .skill {
+  font-weight: 700;
+}
+
+@media (max-width: 1024px) {
+  .footer {
+    margin: 20px 150px 12px 150px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer {
+    margin: 15px 75px 10px 75px;
+    padding: 8px 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    font-size: 0.9rem;
+    margin: 15px 60px 10px 60px;
+    padding: 8px 18px;
+  }
+}
+
+/* Buttons */
+.btn {
+  background: linear-gradient(90deg, var(--sky-blue), var(--light-blue));
+  border: none;
+  padding: 10px 24px;
+  color: var(--deep-blue);
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: var(--glow);
+}
+.btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px var(--light-blue);
+}
+
+/* ✨ Scroll Reveal Animations (Jelly Glow Style) */
+
+section {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: all 1.2s ease;
+  filter: blur(8px);
+}
+
+section.hero {
+  opacity: 1;
+  transform: none;
+  filter: none;
+  transition: none;
+}
+
+section.visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+  box-shadow: 0 0 20px rgba(0, 170, 255, 0.15);
+}
+
+section.hero.visible {
+  box-shadow: none;
+}
+
+/* Optional glowing header fade-in */
+section h2 {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 1s ease 0.3s;
+}
+
+section.hero h2 {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+
+section.visible h2 {
+  opacity: 1;
+  transform: translateY(0);
+  text-shadow: 0 0 15px rgba(102, 204, 255, 0.6);
+}
+
+/* Gentle content stagger (for inner elements) */
+section.visible p,
+section.visible .skill,
+section.visible .project-card,
+section.visible .testimonial-card {
+  animation: fadeSlideUp 1.2s ease forwards;
+}
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+:root {
+  --social-light: #0b2540;
+  --social-dark: #ffffff;
+  --btn-bg-light: rgba(255, 255, 255, 0.25);
+  --btn-bg-dark: rgba(0, 0, 0, 0);
+  --btn-size: 50px;
+}
+
+/* Common Button Styles */
+.floating-btn {
+  font-size: 1.15rem;
+  bottom: 15px;
+  position: fixed;
+  width: var(--btn-size);
+  height: var(--btn-size);
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.2),
+    inset -1px -1px 3px rgba(255, 255, 255, 0.4), 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  background: var(--btn-bg-light);
+}
+
+.floating-btn i {
+  display: flex; /* use flex for icon itself */
+  align-items: center; /* vertical center inside icon container */
+  justify-content: center; /* horizontal center */
+  display: block; /* forces block inside flex */
+  line-height: 1; /* removes any extra line height */
+  margin: 0; /* remove extra margin */
+  padding: 0; /* remove extra padding */
+  color: var(--social-light);
+  transition: all 0.3s ease;
+}
+
+.floating-btn:hover {
+  transform: scale(1.1);
+}
+
+.floating-btn i:hover {
+  transform: scale(1.1);
+  color: #2ea3ff;
+}
+
+/* Page Up Button */
+#pageup-btn {
+  right: 100px;
+  display: none; /* hidden initially */
+}
+
+/* Dark Mode */
+body.dark-mode .floating-btn {
+  background: var(--btn-bg-dark);
+}
+
+body.dark-mode .floating-btn i {
+  color: var(--social-dark);
+}
+
+/* Hide system cursor everywhere */
+/* body, * {
+  cursor: none !important;
+} */
+@media (max-width: 1024px) {
+  .floating-btn {
+    width: 55px;
+    height: 55px;
+    font-size: 1.2rem;
+    bottom: 60px;
+  }
+  #pageup-btn {
+    right: 85px;
+  }
+}
+
+@media (max-width: 768px) {
+  .floating-btn {
+    width: 45px;
+    height: 45px;
+    font-size: 1.1rem;
+    bottom: 55px;
+  }
+  #pageup-btn {
+    right: 70px;
+  }
+}
+
+@media (max-width: 480px) {
+  .floating-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+    bottom: 70px;
+  }
+  #pageup-btn {
+    right: 55px;
+  }
+}

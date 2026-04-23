@@ -1,0 +1,36 @@
+/**
+ * Base layout helpers.
+ *
+ * Purpose:
+ * - Defines shared section width, spacing, media behavior, and accessibility
+ *   defaults used across the portfolio homepage.
+ *
+ * Advantage:
+ * - Keeps repeated layout rules out of section-specific stylesheets.
+ */
+.main-content img {
+  max-width: 100%;
+}
+
+.project-tab,
+.project-link,
+.contact-direct-card,
+.contact-social-grid a,
+.contact-whatsapp-btn {
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

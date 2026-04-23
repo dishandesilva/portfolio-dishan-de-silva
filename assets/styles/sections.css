@@ -1,0 +1,720 @@
+/**
+ * Homepage sections stylesheet.
+ *
+ * Purpose:
+ * - Holds section-specific presentation and responsive adjustments for the
+ *   homepage content areas.
+ *
+ * Advantage:
+ * - Keeps the section layer separate from the global theme and navbar styles.
+ */
+
+/* Shared wrapper for the profile/credentials area. */
+.credentials-cluster {
+  position: relative;
+  isolation: isolate;
+}
+
+.credentials-cluster::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(2, 12, 26, 0.18), rgba(2, 12, 26, 0.28)),
+    var(--section-bg-image) center / cover fixed;
+  opacity: 0.22;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.credentials-cluster .skills-section,
+.credentials-cluster .education-section,
+.credentials-cluster .achievements-section {
+  position: relative;
+  z-index: 1;
+}
+
+/* About section consolidated from the legacy about stylesheet. */
+.about-section {
+  position: relative;
+  min-height: 100vh;
+  overflow: clip;
+}
+
+.about-section .bg-name {
+  position: absolute;
+  top: 240px;
+  left: 50%;
+  width: min(100vw, 1700px);
+  text-align: center;
+  line-height: 0.82;
+  transform-style: preserve-3d;
+  opacity: 0.94;
+  z-index: 0;
+  pointer-events: none;
+  --about-name-shift: 0px;
+  --about-name-scale: 1;
+  transform: translate3d(-50%, var(--about-name-shift), 0) scale(var(--about-name-scale));
+  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.28s ease-out;
+}
+
+.about-section .bg-name h1,
+.about-section .bg-name h2 {
+  margin: 0;
+}
+
+.about-section .bg-name h1 {
+  font-size: clamp(6.8rem, 20vw, 18.4rem);
+  letter-spacing: clamp(0.03rem, 0.32vw, 0.14rem);
+  color: rgba(198, 208, 221, 0.28);
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.22),
+    0 26px 54px rgba(17, 30, 54, 0.14);
+}
+
+.about-section .bg-name h2 {
+  margin-top: 0.08em;
+  font-size: clamp(3.7rem, 11.2vw, 10rem);
+  letter-spacing: clamp(0.03rem, 0.22vw, 0.1rem);
+  color: rgba(102, 204, 255, 0.42);
+  text-shadow:
+    0 0 22px rgba(102, 204, 255, 0.24),
+    0 0 46px rgba(0, 170, 255, 0.2),
+    0 24px 42px rgba(0, 64, 110, 0.14);
+}
+
+.about-section .about-layout {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(300px, 380px) minmax(0, 1fr);
+  gap: 28px;
+  align-items: start;
+}
+
+.about-section .about-sidebar,
+.about-section .about-main {
+  display: grid;
+  gap: 24px;
+}
+
+.about-section .about-heading h2 {
+  max-width: 780px;
+}
+
+.about-section .about-profile-card,
+.about-section .about-copy-card,
+.about-section .about-side-card,
+.about-section .about-info-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--section-card-radius);
+  border: 1px solid var(--section-card-border);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.04)),
+    linear-gradient(135deg, rgba(108, 209, 255, 0.08), rgba(255, 255, 255, 0.02) 42%, rgba(0, 170, 255, 0.06)),
+    rgba(4, 20, 44, 0.74);
+  box-shadow:
+    0 24px 60px rgba(0, 15, 35, 0.3),
+    0 10px 24px rgba(0, 170, 255, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    inset 0 -1px 0 rgba(125, 210, 255, 0.08);
+  backdrop-filter: blur(24px) saturate(155%);
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.about-section .about-profile-card {
+  transform-style: preserve-3d;
+}
+
+.about-section .about-profile-card::before,
+.about-section .about-copy-card::before,
+.about-section .about-side-card::before,
+.about-section .about-info-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(121, 205, 255, 0.4), rgba(255, 255, 255, 0));
+  animation: aboutSheen 8s linear infinite;
+}
+
+.about-section .about-profile-card::after,
+.about-section .about-copy-card::after,
+.about-section .about-side-card::after,
+.about-section .about-info-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at top right, rgba(255, 255, 255, 0.18), transparent 32%),
+    radial-gradient(circle at bottom left, rgba(102, 204, 255, 0.14), transparent 30%);
+  pointer-events: none;
+}
+
+.about-section .about-profile-card:hover,
+.about-section .about-copy-card:hover,
+.about-section .about-side-card:hover,
+.about-section .about-info-card:hover {
+  transform: translateY(-6px);
+}
+
+.about-section .about-profile-card,
+.about-section .about-side-card,
+.about-section .about-info-card {
+  padding: 22px;
+}
+
+.about-section .about-copy-card {
+  padding: 32px;
+}
+
+.about-section .dp-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.04)),
+    linear-gradient(135deg, rgba(111, 216, 255, 0.14), rgba(255, 255, 255, 0.06) 48%, rgba(0, 170, 255, 0.1)),
+    rgba(6, 24, 50, 0.66);
+  border: 1px solid rgba(121, 205, 255, 0.18);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    0 20px 44px rgba(0, 16, 34, 0.2),
+    0 32px 54px rgba(0, 10, 24, 0.12);
+  isolation: isolate;
+  transform: perspective(1400px) rotateX(0deg) rotateY(0deg) translateZ(0);
+  transition:
+    transform 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.6s ease,
+    border-color 0.45s ease;
+}
+
+.about-section .dp-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(130deg, rgba(255, 255, 255, 0.22), transparent 30%, transparent 66%, rgba(102, 204, 255, 0.16)),
+    radial-gradient(circle at top right, rgba(255, 255, 255, 0.18), transparent 34%);
+  opacity: 0.72;
+  pointer-events: none;
+  transition: opacity 0.5s ease, transform 0.7s ease;
+  z-index: 1;
+}
+
+.about-section .dp-wrapper::after {
+  content: "";
+  position: absolute;
+  inset: auto 10% 8% 10%;
+  height: 16%;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(96, 197, 255, 0.32), transparent 72%);
+  filter: blur(18px);
+  opacity: 0.64;
+  transform: translate3d(0, 10px, 0) scale(0.92);
+  transition: opacity 0.6s ease, transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.about-section .profile-dp {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  transform-origin: center center;
+  transition:
+    transform 1s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.75s ease,
+    opacity 0.4s ease;
+}
+
+.about-section .about-profile-card:hover .dp-wrapper {
+  transform: perspective(1400px) rotateX(2deg) rotateY(-3.5deg) translate3d(0, -4px, 0);
+  border-color: rgba(136, 218, 255, 0.28);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    0 28px 56px rgba(0, 16, 34, 0.24),
+    0 38px 76px rgba(0, 170, 255, 0.1);
+}
+
+.about-section .about-profile-card:hover .profile-dp {
+  transform: scale(1.075);
+  filter: saturate(1.12) contrast(1.05) brightness(1.04);
+}
+
+.about-section .about-profile-card:hover .dp-wrapper::before {
+  opacity: 1;
+  transform: translate3d(0, -8px, 0);
+}
+
+.about-section .about-profile-card:hover .dp-wrapper::after {
+  opacity: 0.9;
+  transform: translate3d(0, 4px, 0) scale(1.06);
+}
+
+.about-section .dp-glow {
+  position: absolute;
+  inset: auto 12% -22px 12%;
+  height: 72px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(0, 170, 255, 0.38), transparent 72%);
+  filter: blur(16px);
+  opacity: 0.72;
+  transition: transform 0.6s ease, opacity 0.6s ease;
+  z-index: 0;
+}
+
+.about-section .about-profile-card:hover .dp-glow {
+  transform: scale(1.06);
+  opacity: 0.92;
+}
+
+.about-section .about-profile-copy,
+.about-section .about-highlight-list,
+.about-section .about-dashboard-grid {
+  position: relative;
+  z-index: 1;
+}
+
+.about-section .about-profile-copy {
+  margin-top: 20px;
+  padding: 18px 18px 4px;
+  border-radius: 20px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.03)),
+    rgba(4, 23, 50, 0.22);
+  border: 1px solid rgba(121, 205, 255, 0.12);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 14px 30px rgba(0, 16, 34, 0.08);
+}
+
+.about-section .about-profile-copy h3 {
+  margin: 14px 0 12px;
+  color: var(--text-light);
+  font-size: clamp(1.18rem, 1.4vw, 1.4rem);
+  line-height: 1.45;
+}
+
+.about-section .about-profile-copy p {
+  margin: 0;
+  color: var(--text-soft);
+  line-height: 1.8;
+}
+
+.about-section .about-eyebrow,
+.about-section .about-card-header span,
+.education-date,
+.achievement-date {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(121, 205, 255, 0.2);
+  background: rgba(0, 170, 255, 0.12);
+  color: #89d8ff;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.about-section .about-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.about-section .about-card-header p {
+  color: var(--text-light);
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.about-section .about-stat-grid,
+.about-section .about-dashboard-grid {
+  display: grid;
+  gap: 18px;
+}
+
+.about-section .about-dashboard-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.about-section .about-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.about-section .about-tags span,
+.project-stack-pill,
+.project-deliverable-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(121, 205, 255, 0.24);
+  background: rgba(0, 170, 255, 0.12);
+}
+
+.about-section .about-highlight-item {
+  position: relative;
+  padding: 18px 18px 18px 70px;
+  border-radius: 20px;
+  background: rgba(4, 23, 50, 0.48);
+  border: 1px solid rgba(121, 205, 255, 0.14);
+}
+
+.about-section .about-highlight-icon {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #89d8ff;
+}
+
+/* Homepage responsiveness and layout stabilization. */
+
+.focus-grid,
+.skills-grid,
+.projects-showcase-topbar,
+.project-panel-main,
+.contact-layout,
+.contact-direct-grid,
+.project-panel-header {
+  gap: 24px;
+}
+
+.project-panel-main {
+  align-items: start;
+}
+
+.project-carousel-status-static {
+  min-width: min(100%, 420px);
+}
+
+.project-description-block p:last-child {
+  margin-bottom: 0;
+}
+
+.project-deliverables {
+  align-items: flex-start;
+}
+
+.projects-tabs {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.projects-showcase-meta {
+  min-width: 0;
+}
+
+.contact-cta-shell,
+.projects-showcase-shell {
+  overflow: hidden;
+}
+
+body.light-mode .credentials-cluster::before {
+  background:
+    linear-gradient(180deg, rgba(235, 246, 255, 0.08), rgba(235, 246, 255, 0.14)),
+    var(--section-bg-image) center / cover fixed;
+  opacity: 0.12;
+}
+
+body.light-mode .about-section .about-profile-card,
+body.light-mode .about-section .about-copy-card,
+body.light-mode .about-section .about-side-card,
+body.light-mode .about-section .about-info-card {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.3), rgba(238, 248, 255, 0.16)),
+    linear-gradient(135deg, rgba(102, 204, 255, 0.08), rgba(255, 255, 255, 0.1) 48%, rgba(0, 170, 255, 0.08)),
+    rgba(255, 255, 255, 0.14);
+}
+
+body.light-mode .about-section .dp-wrapper {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.8), rgba(235, 247, 255, 0.42)),
+    linear-gradient(135deg, rgba(124, 216, 255, 0.18), rgba(255, 255, 255, 0.28) 48%, rgba(83, 192, 255, 0.16)),
+    rgba(234, 245, 255, 0.58);
+  border-color: rgba(111, 196, 241, 0.24);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.88),
+    0 22px 44px rgba(88, 159, 206, 0.12),
+    0 34px 60px rgba(120, 186, 230, 0.1);
+}
+
+body.light-mode .about-section .about-profile-copy {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(238, 248, 255, 0.52)),
+    rgba(255, 255, 255, 0.36);
+  border-color: rgba(111, 196, 241, 0.18);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.92),
+    0 16px 30px rgba(88, 159, 206, 0.08);
+}
+
+body.light-mode .about-section .about-profile-copy h3 {
+  color: #0c2340;
+}
+
+body.light-mode .about-section .about-profile-copy p {
+  color: rgba(12, 35, 64, 0.76);
+}
+
+body.light-mode .about-section .about-side-card,
+body.light-mode .about-section .about-info-card {
+  border-color: rgba(111, 196, 241, 0.24);
+  box-shadow:
+    0 22px 48px rgba(77, 123, 159, 0.14),
+    0 10px 24px rgba(0, 170, 255, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.82);
+}
+
+body.light-mode .about-section .about-card-header p {
+  color: #0c2340;
+}
+
+body.light-mode .about-section .about-card-header span {
+  border-color: rgba(92, 186, 235, 0.24);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(236, 247, 255, 0.58)),
+    rgba(0, 170, 255, 0.08);
+  color: #0d7fbd;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 8px 18px rgba(88, 159, 206, 0.1);
+}
+
+body.light-mode .about-section .about-stat {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(236, 247, 255, 0.62)),
+    rgba(0, 170, 255, 0.08);
+  border: 1px solid rgba(111, 196, 241, 0.2);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.92),
+    0 14px 28px rgba(88, 159, 206, 0.1);
+}
+
+body.light-mode .about-section .about-stat i {
+  color: #1491cf;
+}
+
+body.light-mode .about-section .stat-value {
+  color: #0c2340;
+  text-shadow: none;
+}
+
+body.light-mode .about-section .stat-label {
+  color: rgba(12, 35, 64, 0.74);
+}
+
+body.light-mode .about-section .about-highlight-item {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(238, 248, 255, 0.56)),
+    rgba(255, 255, 255, 0.34);
+  border-color: rgba(111, 196, 241, 0.2);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.92),
+    0 14px 26px rgba(88, 159, 206, 0.08);
+}
+
+body.light-mode .about-section .about-highlight-item strong {
+  color: #0c2340;
+}
+
+body.light-mode .about-section .about-highlight-item p {
+  color: rgba(12, 35, 64, 0.74);
+}
+
+body.light-mode .about-section .about-highlight-icon {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(237, 247, 255, 0.58)),
+    rgba(0, 170, 255, 0.08);
+  color: #1491cf;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    0 10px 22px rgba(88, 159, 206, 0.12);
+}
+
+body.light-mode .about-section .bg-name h1 {
+  color: rgba(166, 178, 195, 0.58);
+}
+
+body.light-mode .about-section .bg-name h2 {
+  color: rgba(0, 170, 255, 0.34);
+  text-shadow:
+    0 0 14px rgba(102, 204, 255, 0.14),
+    0 0 28px rgba(0, 170, 255, 0.12),
+    0 18px 30px rgba(0, 64, 110, 0.08);
+}
+
+body.dark-mode .about-section .bg-name h1 {
+  color: rgba(214, 224, 234, 0.15);
+}
+
+body.dark-mode .about-section .bg-name h2 {
+  color: rgba(102, 204, 255, 0.26);
+}
+
+@media (max-width: 1200px) {
+  .projects-tabs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .contact-layout,
+  .project-panel-main,
+  .project-panel-header,
+  .projects-showcase-topbar {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 1100px) {
+  .about-section .about-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .about-section .about-heading,
+  .about-section .about-heading h2 {
+    text-align: center;
+    margin-inline: auto;
+  }
+
+  .about-section .about-dashboard-grid,
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .skill-featured-card {
+    grid-column: span 1;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1100px) {
+  .about-section .about-profile-card {
+    display: grid;
+    grid-template-columns: minmax(240px, 320px) minmax(0, 1fr);
+    align-items: center;
+    gap: 20px;
+  }
+
+  .about-section .about-profile-copy {
+    margin-top: 0;
+    padding: 20px 20px 10px;
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .about-section .about-profile-copy h3 {
+    margin-top: 16px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .focus-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: auto;
+    min-width: 0;
+    transform: none;
+  }
+
+  .focus-scroll-stage {
+    min-height: 0;
+    overflow: visible;
+    padding-inline: 0;
+  }
+
+  .focus-scroll-stage::before,
+  .focus-scroll-stage::after {
+    display: none;
+  }
+
+  .focus-grid [data-clone] {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .credentials-cluster::before {
+    background:
+      linear-gradient(180deg, rgba(2, 12, 26, 0.16), rgba(2, 12, 26, 0.24)),
+      var(--section-bg-image) center / cover no-repeat;
+    opacity: 0.16;
+  }
+
+  .about-section .bg-name {
+    top: 220px;
+    width: min(calc(100vw - 8px), 1200px);
+    line-height: 0.88;
+  }
+
+  .about-section .bg-name h1 {
+    font-size: clamp(4.9rem, 21.5vw, 8.6rem);
+  }
+
+  .about-section .bg-name h2 {
+    margin-top: 0.14em;
+    font-size: clamp(2.5rem, 10.6vw, 5rem);
+  }
+
+  .about-section .about-profile-card,
+  .about-section .about-copy-card,
+  .about-section .about-side-card,
+  .about-section .about-info-card,
+  .focus-card,
+  .skill-category,
+  .achievement-card,
+  .education-card,
+  .project-showcase-card,
+  .contact-cta-card {
+    padding: 22px;
+    border-radius: 24px;
+  }
+
+  .about-section .about-card-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .focus-grid,
+  .projects-tabs,
+  .contact-social-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .projects-showcase-shell,
+  .contact-cta-shell {
+    padding: 22px;
+  }
+
+}
+
+@media (max-width: 480px) {
+  .about-section .bg-name {
+    top: 140px;
+  }
+
+  .project-tab,
+  .contact-whatsapp-btn,
+  .contact-direct-card {
+    width: 100%;
+  }
+}

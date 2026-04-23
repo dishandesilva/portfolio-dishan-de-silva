@@ -1,0 +1,478 @@
+:root {
+  --bg: #ffffff; /* subtle off-white page */
+  --imac-gray: #e7ebf0;
+  --screen-deep: linear-gradient(180deg, #0b2540 0%, #083153 70%);
+  --accent: #2ea3ff;
+  --pastel-green: #a7e3d0; /* provided palette */
+  --coral: #f7a8a8;
+  --cream: #f9f9f9;
+  --warm-y: #f6d267;
+  --white: #ffffff;
+  --sky-1: #9ed8ff;
+  --sky-2: #c7e6ff;
+  --sky-3: #e3f3ff;
+  --text: #0d1b2a;
+  --glass: rgba(255, 255, 255, 0.45);
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+}
+
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  overflow: hidden;
+}
+
+body.splash-body {
+  height: 100%;
+  margin: 0;
+  background: url("../img/background/splash-bg.webp") no-repeat center center
+    fixed;
+  background-size: cover;
+  color: var(--text);
+  overflow: hidden;
+}
+
+/* overall center */
+.splash-wrap {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 36px;
+  padding: 32px;
+  background-image: url("assets/img/background/splash-bg.jpg"); /* path to image */
+  background-size: cover; /* makes image cover the entire element */
+  background-position: center; /* centers the image */
+  background-repeat: no-repeat; /* prevents tiling */
+}
+
+/* IMAC FRAME */
+.imac-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.imac-frame {
+  width: 750px;
+  max-width: 92vw;
+  height: 380px;
+  border-radius: 15px;
+  background: linear-gradient(180deg, #ffffff, #f0f4f8);
+  padding: 10px;
+  padding-bottom: 50px;
+  box-shadow: 0 40px 120px rgba(9, 18, 32, 0.28),
+    0 6px 18px rgba(9, 18, 32, 0.12);
+  transform: rotateY(-12deg) translateZ(0.001px); /* angled left */
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1400px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* thin bezel inner */
+.screen-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  background: var(--screen-deep);
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 8px 120px rgba(2, 6, 16, 0.42),
+    inset 0 -60px 120px rgba(0, 0, 0, 0.65);
+}
+
+/* wallpaper (parallax) - will shift slightly with mouse */
+.screen-wallpaper {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+      circle at 15% 20%,
+      rgba(255, 255, 255, 0.03),
+      transparent 10%
+    ),
+    linear-gradient(
+      120deg,
+      rgba(163, 224, 255, 0.07),
+      rgba(255, 230, 200, 0.02)
+    );
+  transform: translateZ(0);
+  will-change: transform;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+/* content inside screen */
+.screen-content {
+  position: relative;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+.welcome-top {
+  display: flex;
+  gap: 22px;
+  align-items: center;
+  padding-left: 48px;
+}
+
+.ds-badge {
+  width: 76px;
+  height: 76px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, var(--cream), #fff);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15),
+    inset 0 2px 0 rgba(255, 255, 255, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ds-badge img {
+  width: 60%;
+  height: 60%;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+/* text area */
+.title-wrap {
+  color: #eaf7ff;
+}
+.title {
+  font-size: 22px;
+  font-weight: 800;
+  color: #e9f6ff;
+  margin-bottom: 6px;
+  text-shadow: 0 4px 28px rgba(0, 0, 0, 0.28);
+}
+.line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.typed {
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.92);
+}
+.cursor {
+  color: rgba(255, 255, 255, 0.9);
+  animation: blink 1s steps(1) infinite;
+}
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* screen reflection glass */
+.screen-reflection {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.08),
+    rgba(255, 255, 255, 0.02)
+  );
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+/* keyboard container - pastel mechanical mini */
+.keyboard-wrap {
+  transform: translateZ(0px) rotateX(55deg) rotateY(0deg);
+  perspective: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0px;
+  background: transparent;
+}
+
+/* key row */
+.kbd-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+}
+.key {
+  --w: 58px;
+  min-width: var(--w);
+  height: 52px;
+  border-radius: 10px;
+  background: linear-gradient(180deg, var(--sky-3), #fff);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 18px 30px rgba(6, 20, 40, 0.18),
+    0 2px 0 rgba(255, 255, 255, 0.6) inset;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #0c2340;
+  transform-style: preserve-3d;
+  transition: transform 0.12s cubic-bezier(0.2, 0.9, 0.3, 1), box-shadow 0.12s;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* the side depth to emulate key thickness (pseudo element) */
+.key::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -8px;
+  height: 10px;
+  border-radius: 8px;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.18));
+  transform-origin: top;
+  z-index: -1;
+  filter: blur(4px);
+}
+
+/* individual styles */
+.key.small {
+  --w: 46px;
+  height: 40px;
+  border-radius: 8px;
+}
+.key.sm {
+  --w: 48px;
+  height: 40px;
+  border-radius: 8px;
+}
+.key.k-p {
+  background: linear-gradient(180deg, #e3f3ff, #c7e6ff);
+}
+.key.k-p::after {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.14));
+}
+.key.k-p:hover {
+  box-shadow: 0 22px 40px rgba(16, 46, 80, 0.12);
+  transform: translateY(-6px) translateZ(12px);
+}
+.key.space {
+  min-width: 260px;
+  height: 44px;
+  border-radius: 10px;
+  background: linear-gradient(180deg, #fff, #f6fbff);
+}
+.key.enter {
+  min-width: 140px;
+  height: 56px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, #ffffff, #f2f7ff);
+  color: #08204a;
+  font-weight: 800;
+  box-shadow: 0 26px 60px rgba(6, 20, 40, 0.18), 0 4px 8px rgba(0, 0, 0, 0.12);
+}
+
+/* Enter specific accent + glow */
+.key.enter {
+  background: linear-gradient(180deg, #ffffff, #eef7ff);
+  border: 1px solid rgba(2, 20, 40, 0.06);
+}
+.key.enter::before {
+  content: "";
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  top: 8px;
+  height: calc(100% - 16px);
+  border-radius: 8px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  pointer-events: none;
+}
+
+/* hover lighting effect: soft glow from key top */
+.key:hover {
+  transform: translateY(-8px) translateZ(16px);
+  box-shadow: 0 30px 70px rgba(6, 20, 40, 0.2);
+}
+
+/* press animation (down) */
+.key.pressed {
+  transform: translateY(2px) translateZ(4px) !important;
+  box-shadow: 0 8px 18px rgba(2, 10, 30, 0.18) !important;
+}
+
+/* smaller screens */
+@media (max-width: 880px) {
+  .imac-frame {
+    width: 720px;
+    height: 320px;
+  }
+  .key {
+    min-width: 48px;
+    height: 44px;
+  }
+  .key.space {
+    min-width: 200px;
+  }
+}
+@media (max-width: 520px) {
+  .splash-wrap {
+    gap: 8px;
+    transform: translateY(-10px);
+    padding-bottom: 96px;
+  }
+  .imac-wrap {
+    transform: translateY(-16px);
+  }
+  .imac-frame {
+    width: 92vw;
+    height: 260px;
+    border-radius: 12px;
+  }
+  .screen-inner {
+    gap: 25px;
+  }
+  .ds-badge {
+    width: 62px;
+    height: 38px;
+  }
+  .welcome-top {
+    padding-left: 15px;
+  }
+  .keyboard-wrap {
+    transform: translateZ(0px) rotateX(55deg) rotateY(0deg);
+    margin-top: -18px;
+    width: 100%;
+    align-items: center;
+  }
+  .kbd-keys {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .key.enter {
+    min-width: 110px;
+  }
+  .kbd-row {
+    gap: 5px;
+  }
+  .key.space {
+    min-width: 175px;
+  }
+}
+
+.splash-footer {
+  position: fixed;
+  left: 18px;
+  bottom: 12px;
+  /* transform: translateX(-50%); */
+  padding: 10px 24px;
+  background: rgba(255, 255, 255, 0.15); /* semi-transparent white */
+  backdrop-filter: blur(12px) saturate(180%); /* glassy blur effect */
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border-radius: 999px; /* pill shape */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* subtle white border */
+  color: #0b2540; /* text color */
+  font-weight: 600;
+  font-size: 14px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); /* soft floating shadow */
+  text-align: center;
+  z-index: 950;
+}
+
+@media (max-width: 767px) {
+  .splash-footer {
+    left: 12px;
+    right: 12px;
+    transform: none;
+    bottom: max(8px, env(safe-area-inset-bottom));
+    width: auto;
+    padding: 9px 14px;
+    font-size: 12px;
+    z-index: 950;
+  }
+}
+
+.preloader {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(7, 10, 16, 0.6);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.28s;
+  z-index: 1;
+}
+.preloader.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.preloader-card {
+  width: 380px;
+  padding: 18px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.177);
+  border: 1px solid rgba(255, 255, 255, 0.236);
+  text-align: center;
+  color: #fff;
+}
+.progress {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  margin-top: 12px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.bar {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(
+    90deg,
+    var(--accent),
+    var(--sky-1),
+    var(--sky-2),
+    var(--sky-3),
+    var(--white)
+  );
+  border-radius: 4px;
+  transition: width 0.2s ease-out;
+}
+
+.progress-text {
+  margin-top: 10px;
+  font-weight: 700;
+  color: #fff;
+}
+
+@media (max-width: 520px) {
+  .preloader-card {
+    margin: 25px;
+  }
+}
+
+/* Test buttons styling */
+.key-btn {
+  margin: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+}

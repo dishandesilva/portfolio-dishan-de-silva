@@ -1,0 +1,258 @@
+:root {
+  --sky-blue: #00aaff;
+  --light-blue: #66ccff;
+  --white: #ffffff;
+  --social-light: #0b2540; /* replace with your header social icon light color */
+  --social-dark: #ffffff; /* replace with your header social icon dark color */
+}
+
+/* =====================
+Right Vertical Navigation
+===================== */
+.nav-right {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 60px;
+  display: flex;
+  flex-direction: column;
+  z-index: 999;
+  /* background: rgba(0, 25, 50, 0.15); */
+  backdrop-filter: blur(14px);
+}
+
+.nav-right ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-right li {
+  position: relative;
+  flex: 1;
+  margin: 5px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background: rgba(0,0,0,0.05); */
+  background: rgba(255, 255, 255, 0.564);
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  box-shadow: 0 0 6px rgba(0, 170, 255, 0.1) inset;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  /* Soft embossed effect */
+  box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.2),
+    /* inner shadow reduced */ inset -1px -1px 3px rgba(255, 255, 255, 0.4),
+    /* highlight softened */ 0 4px 12px rgba(0, 0, 0, 0.15); /* outer shadow */
+}
+
+/* Icon style */
+.nav-right li i {
+  font-size: 1.15rem;
+  color: var(--social-light);
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+/* Text style */
+.nav-right li span {
+  position: absolute;
+  top: 50%;
+  left: 25%;
+  transform: translate(-50%, -50%) rotate(90deg);
+  font-size: 0.75rem;
+  color: var(--social-light);
+  opacity: 0;
+  white-space: nowrap;
+  text-align: center;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  z-index: 3;
+}
+
+/* Hover effect - pill shape & expand */
+.nav-right li:hover {
+  flex: 2; /* magnetic effect */
+  width: 100px;
+  /* border-radius: 50px; pill shape */
+  background: linear-gradient(180deg, var(--sky-blue), var(--light-blue));
+  box-shadow: 0 0 20px var(--sky-blue), 0 0 30px rgba(0, 170, 255, 0.4);
+}
+
+/* Icon disappears on hover */
+.nav-right li:hover i {
+  opacity: 0;
+  transform: scale(0.5);
+}
+
+/* Show text on hover */
+.nav-right li:hover span {
+  opacity: 1;
+}
+
+/* Non-hover siblings shrink slightly */
+.nav-right li:not(:hover) {
+  flex: 0.9;
+}
+
+/* =====================
+Selected Section Styling
+===================== */
+.nav-right li.active {
+  flex: 1;
+  width: 80px; /* slightly wider than normal bar */
+  background: linear-gradient(180deg, var(--sky-blue), var(--light-blue));
+  box-shadow: 0 0 25px var(--sky-blue), 0 0 30px rgba(0, 170, 255, 0.5);
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  margin-left: -20px; /* move extra width left */
+  transition: all 0.4s ease;
+}
+
+/* Active icon */
+.nav-right li.active i {
+  opacity: 1;
+  color: var(--social-light); /* match social icon color in light mode */
+  transform: scale(1.2);
+}
+
+/* Hide text on active */
+.nav-right li.active span {
+  opacity: 0;
+}
+
+/* Glowing overlay */
+.nav-right li::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 170, 255, 0.6),
+    rgba(102, 204, 255, 0.3),
+    rgba(0, 170, 255, 0.6)
+  );
+  opacity: 0;
+  filter: blur(12px);
+  transition: opacity 0.3s ease;
+  z-index: 1;
+  border-radius: inherit; /* match pill or left-curved shape */
+}
+
+/* Glow on hover */
+.nav-right li:hover::before {
+  opacity: 1;
+  animation: pulseGlow 1.5s infinite alternate;
+}
+
+@keyframes pulseGlow {
+  0% {
+    filter: blur(10px);
+  }
+  50% {
+    filter: blur(14px);
+  }
+  100% {
+    filter: blur(10px);
+  }
+}
+
+/* =====================
+Dark Mode Styles
+===================== */
+
+/* Nav items */
+body.dark-mode .nav-right li {
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: inset 1px 1px 3px rgba(255, 255, 255, 0.05),
+    inset -1px -1px 3px rgba(255, 255, 255, 0.05), 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+body.dark-mode .nav-right li span {
+  color: var(--social-dark);
+}
+
+/* Hover effect in dark mode */
+body.dark-mode .nav-right li:hover {
+  background: linear-gradient(180deg, #00bfff, #3399ff);
+  box-shadow: 0 0 25px #00bfff, 0 0 35px rgba(0, 170, 255, 0.5);
+}
+
+/* Active section */
+body.dark-mode .nav-right li.active {
+  background: linear-gradient(180deg, #00bfff, #3399ff);
+  box-shadow: 0 0 25px #00bfff, 0 0 35px rgba(0, 170, 255, 0.5);
+}
+
+/* Glow overlay */
+body.dark-mode .nav-right li::before {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 191, 255, 0.7),
+    rgba(51, 153, 255, 0.4),
+    rgba(0, 191, 255, 0.7)
+  );
+}
+
+/* Icon color (already declared, but re-confirmed for clarity) */
+body.dark-mode .nav-right li i {
+  color: var(--social-dark);
+}
+
+@media (max-width: 1024px) {
+  .nav-right {
+    width: 55px;
+  }
+  .nav-right li {
+    margin: 5px 0;
+  }
+  .nav-right li:hover {
+    width: 90px;
+  }
+  .nav-right li.active {
+    width: 75px;
+    margin-left: -20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav-right {
+    width: 50px;
+  }
+  .nav-right li {
+    margin: 4px 0;
+  }
+  .nav-right li:hover {
+    width: 80px;
+  }
+  .nav-right li.active {
+    width: 65px;
+    margin-left: -15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-right {
+    width: 40px;
+  }
+  .nav-right li {
+    margin: 3px 0;
+  }
+  .nav-right li:hover {
+    width: 70px;
+  }
+  .nav-right li.active {
+    width: 50px;
+    margin-left: -10px;
+  }
+}
