@@ -1,7 +1,7 @@
 # <div align="center">Dishan De Silva - Portfolio</div>
 
 <div align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&height=220&color=0:0F172A,50:0EA5E9,100:22C55E&text=Dishan%20De%20Silva&fontColor=ffffff&fontSize=42&fontAlignY=38&desc=Full-Stack%20Developer%20%7C%20Founder%20of%20Azureline&descAlignY=58&animation=fadeIn" alt="Dishan De Silva banner" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f172a,100:1e293b&height=220&section=header&text=Dishan%20De%20Silva&fontColor=ffffff&fontSize=42&fontAlignY=38&desc=Full-Stack%20Developer%20%7C%20Founder%20of%20Azureline&descAlignY=58&animation=fadeIn" alt="Dishan De Silva banner" />
 </div>
 
 <div align="center">
@@ -33,14 +33,6 @@ It is designed to communicate engineering capability quickly: who is building, w
   <a href="https://dishandesilva.kesug.com/" target="_blank">
     <img src="https://img.shields.io/badge/dishandesilva.kesug.com-0EA5E9?style=for-the-badge&logo=vercel&logoColor=white" alt="Live demo URL" />
   </a>
-</div>
-
----
-
-## Visual Stack
-
-<div align="center">
-  <img src="https://skillicons.dev/icons?i=html,css,js,php,mysql,java,python,react,nodejs,bootstrap,git,github,vscode,figma" alt="Skill icons" />
 </div>
 
 ---
@@ -141,7 +133,7 @@ This portfolio includes a real production-style project module designed to prese
 
 ## Preview
 
-![Portfolio Preview](preview/index.png)
+![Portfolio Preview](preview/splash.png)
 ![Homepage Preview](preview/home.png)
 
 ---
