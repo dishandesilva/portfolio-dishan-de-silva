@@ -1,145 +1,186 @@
-# Dishan De Silva Portfolio
+# <div align="center">Dishan De Silva - Portfolio</div>
 
-Live Demo: https://dishandesilva.kesug.com/
+<div align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&height=220&color=0:0F172A,50:0EA5E9,100:22C55E&text=Dishan%20De%20Silva&fontColor=ffffff&fontSize=42&fontAlignY=38&desc=Full-Stack%20Developer%20%7C%20Founder%20of%20Azureline&descAlignY=58&animation=fadeIn" alt="Dishan De Silva banner" />
+</div>
 
-A modern, experience-driven personal portfolio built to showcase technical skills, design thinking, and real-world project work. This project emphasizes performance, interaction quality, and a structured presentation of professional capabilities.
+<div align="center">
+
+Modern full-stack portfolio engineered to present technical depth, product thinking, and polished execution in a recruiter-friendly format.
+
+Built as a real-world personal brand experience with modular PHP architecture, performance-conscious frontend delivery, and production-style project presentation.
+
+[View Live Portfolio](https://dishandesilva.kesug.com/) | [Explore Project Structure](#project-structure) | [Tech Stack](#tech-stack)
+
+</div>
+
+---
 
 ## Overview
 
-This portfolio is a PHP-based, section-oriented website designed to present:
+This repository powers the public portfolio of Dishan De Silva, a full-stack developer focused on building practical digital products with strong visual quality and clean system design. The project is structured like a production-ready marketing and portfolio platform rather than a simple static profile page, combining frontend craft, reusable PHP composition, and scalable content organization.
 
-* Professional profile and technical identity
-* Core services and areas of expertise
-* Skills, education, and background
-* A structured projects showcase with filtering and spotlight features
-* Direct communication channels and social presence
+It is designed to communicate engineering capability quickly: who is building, what technologies are in play, how the interface is structured, and how real project work is surfaced through a polished portfolio system.
 
-The implementation focuses on maintainability, modular design, and scalable frontend architecture.
+---
+
+## Live Demo
+
+<div align="center">
+  <a href="https://dishandesilva.kesug.com/" target="_blank">
+    <img src="https://img.shields.io/badge/Launch%20Live%20Portfolio-0F172A?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Launch live portfolio" />
+  </a>
+  <a href="https://dishandesilva.kesug.com/" target="_blank">
+    <img src="https://img.shields.io/badge/dishandesilva.kesug.com-0EA5E9?style=for-the-badge&logo=vercel&logoColor=white" alt="Live demo URL" />
+  </a>
+</div>
+
+---
+
+## Visual Stack
+
+<div align="center">
+  <img src="https://skillicons.dev/icons?i=html,css,js,php,mysql,java,python,react,nodejs,bootstrap,git,github,vscode,figma" alt="Skill icons" />
+</div>
+
+---
 
 ## Key Features
 
-* Interactive hero section with layered visual effects
-* Light and dark theme support with persistent user preference
-* Structured projects showcase with category filtering
-* Real project integration with live preview access
-* Placeholder states for upcoming work (no dummy content)
-* Refined micro-interactions across UI components
-* Responsive design optimized for mobile, tablet, and desktop
-* Lazy loading and optimized media delivery
-* SEO-ready metadata and structured data integration
+- Premium landing-page presentation built for personal branding, recruiter review, and client-facing credibility
+- Modular PHP composition using reusable includes for maintainable page assembly
+- Production-style project showcase system with spotlight presentation and live preview access
+- Responsive interface architecture optimized across desktop, tablet, and mobile breakpoints
+- Performance-aware asset loading with deferred scripts, lazy loading patterns, and optimized media delivery
+- SEO-ready page foundation with metadata, canonical handling, and social sharing support
+- Theme-aware UI experience with persistent user preference handling
+- Deployment-ready structure suitable for XAMPP local development and standard PHP hosting environments
 
-## Preview
+---
+## Tech Stack
 
-![Preview](preview/splash.png)
-![Preview](preview/home.png)
+<div align="center">
+  <img src="https://skillicons.dev/icons?i=html,css,js,php,mysql,git,github,vscode" alt="Core stack icons" />
+</div>
 
-## Technology Stack
+| Layer | Stack |
+| --- | --- |
+| Frontend | HTML5, CSS3, Vanilla JavaScript, Font Awesome, Devicon, Spline-enhanced desktop visuals |
+| Backend | PHP with reusable include-based templating |
+| Database / Data Layer | JSON-driven project data architecture, MySQL listed as part of broader working stack |
+| Tools | Git, GitHub, XAMPP, VS Code, CDN-delivered UI libraries |
 
-* PHP (template composition using includes)
-* HTML5
-* CSS3 (modular architecture)
-* JavaScript (Vanilla)
-* Font Awesome
-* Devicon
-* Spline Viewer (used in enhanced desktop experience)
+---
 
 ## Project Structure
 
 ```text
-portfolio/
-├── index.php
-├── home.php
-├── includes/
-│   ├── head.php
-│   ├── header-top.php
-│   ├── navbar.php
-│   └── footer.php
-├── assets/
-│   ├── audio/
-│   ├── img/
-│   ├── scripts/
-│   └── styles/
-└── data/
-    └── projects.json
+portfolio-dishan-de-silva/
+|-- index.php
+|-- home.php
+|-- includes/
+|   |-- head.php
+|   |-- header-top.php
+|   |-- navbar.php
+|   `-- footer.php
+|-- assets/
+|   |-- audio/
+|   |-- img/
+|   |-- scripts/
+|   |   |-- hero-2d.js
+|   |   |-- home.js
+|   |   |-- main.js
+|   |   |-- navbar.js
+|   |   |-- scrollbar.js
+|   |   `-- splash.js
+|   |-- styles/
+|   |   |-- animations.css
+|   |   |-- base.css
+|   |   |-- home.css
+|   |   |-- main.css
+|   |   |-- navbar.css
+|   |   |-- scrollbar.css
+|   |   |-- sections.css
+|   |   |-- splash.css
+|   |   `-- vars.css
+|   |-- svg/
+|   `-- video/
+|-- data/
+`-- preview/
 ```
 
-## Frontend Architecture
+---
 
-### CSS
+## Architecture
 
-* `vars.css` — design tokens and shared variables
-* `base.css` — layout foundation and structure
-* `main.css` — global styling
-* `home.css` — homepage-specific components and sections
-* `sections.css` — shared section behavior and responsiveness
-* `animations.css` — motion and transitions
-* `navbar.css` — navigation styling
-* `scrollbar.css` — custom scrollbar and progress indicator
+### Frontend Architecture
 
-### JavaScript
+The UI is built as a modern section-based portfolio experience with a strong emphasis on interaction quality, responsive composition, and brand presentation. Styling is separated into focused CSS layers for tokens, layout foundations, section behavior, motion, navigation, and page-specific presentation.
 
-* `main.js` — global application logic
-* `home.js` — homepage interactions
-* `hero-2d.js` — canvas-based hero effects
-* `portfolio-features.js` — projects filtering, rendering, and state handling
-* `navbar.js` — navigation behavior
-* `scrollbar.js` — scroll progress logic
-* `home-sound.js` — audio interaction control
-* `cursor.js` — custom cursor system
+### Modular PHP System
 
-## Projects Module
+The backend structure uses lightweight PHP includes to keep shared layout concerns centralized. This makes the portfolio easier to extend, easier to maintain, and cleaner to deploy without introducing unnecessary framework overhead.
 
-The projects section is managed through `portfolio-features.js`.
+### Performance Optimization Layer
 
-* Supports category-based filtering
-* Displays real project data with metadata
-* Includes live preview links
-* Uses structured placeholder states for upcoming content
-* Implements lazy loading and responsive rendering
+The delivery layer is tuned for practical performance through deferred JavaScript loading, organized asset versioning, lazy-loading patterns, and streamlined static asset usage. The result is a portfolio system that feels polished without becoming heavy.
+
+---
+
+## Project Showcase System
+
+This portfolio includes a real production-style project module designed to present work in a more intentional way than a basic grid of cards.
+
+- Spotlight-oriented presentation for featured work
+- Category-based filtering and structured metadata handling
+- Live preview access built into the project experience
+- Placeholder states prepared for future releases without low-quality filler content
+- Frontend logic organized for maintainability and future scale
+
+---
+
+## Preview
+
+![Portfolio Preview](preview/index.png)
+![Homepage Preview](preview/home.png)
+
+---
 
 ## Local Development
 
-To run locally using XAMPP:
+1. Start Apache in XAMPP.
+2. Place this project inside `htdocs`.
+3. Open `http://localhost/<project-folder>/` in your browser.
 
-1. Start Apache
-2. Place the project inside `htdocs`
-3. Open in browser:
-
-   * `http://localhost/<project-folder>/`
+---
 
 ## Deployment
 
-1. Upload files to your hosting root (e.g., `public_html`)
-2. Configure domain to point to the project directory
-3. Enable HTTPS and enforce redirection
-4. Use versioned assets to manage caching
-5. Verify all entry points after deployment
+- Upload the project to your hosting root such as `public_html`
+- Point the domain or subdomain to the portfolio directory
+- Enable HTTPS and verify canonical routing
+- Keep asset versions updated when shipping visual or script changes
+- Validate all core sections and live project links after release
 
-## Performance and SEO
-
-This project includes:
-
-* Structured metadata and canonical URLs
-* Open Graph and social sharing configuration
-* Deferred JavaScript loading
-* Optimized asset delivery
-* Lazy loading strategies for media
-* Responsive design with mobile-first considerations
+---
 
 ## Maintenance
 
-* Update project data in `portfolio-features.js` or `projects.json`
-* Extend styles within modular CSS files
-* Maintain consistency in interaction design and motion
-* Ensure responsiveness remains stable across breakpoints
+- Update showcase content through the project data layer and frontend rendering logic
+- Extend styles within the modular CSS architecture to preserve consistency
+- Review responsiveness, interaction polish, and asset loading when shipping new sections
 
-## License
-
-This project is provided for portfolio and demonstration purposes.
-All design, branding, and implementation are the intellectual property of the author.
+---
 
 ## Author
 
-Dishan De Silva
-Software Engineer
-Founder, Azureline
+**Dishan De Silva**  
+Software Engineer  
+Founder of Azureline
+
+---
+
+## License
+
+This project is published for portfolio presentation and professional evaluation.  
+The design system, branding, written content, and implementation remain the intellectual property of Dishan De Silva. Reuse, redistribution, or commercial replication without permission is not authorized.
